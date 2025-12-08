@@ -1,0 +1,3 @@
+ftrack-python-api
+openpyxl
+PySide6

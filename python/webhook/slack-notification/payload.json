@@ -1,0 +1,51 @@
+{
+  "id": "4b39380d-06d9-4a49-b515-615fab930963",
+  "metadata": {
+    "date": "2025-12-07T10:29:03.987556+00:00",
+    "resource_id": "0bdc0ec6-70e1-11ea-a90b-0a58ac1e0745",
+    "server_url": "https://chinateam.ftrackapp.cn/",
+    "configuration_hash": "45dadc2e6d4d09ffe11689f5e17aeb2a2115d7c28ce88c4bad386f88e1f81103"
+  },
+  "fez_id": "ftrack_entity_event_v1",
+  "entity": {
+    "id": [
+      "62b6f02a-1039-4da8-95c8-4d8cbad2ba9d"
+    ],
+    "entity_type": "Task",
+    "operation": "update",
+    "new": {
+      "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+      "priority_id": "9661b320-3a0c-11e2-81c1-0800200c9a66",
+      "id": "62b6f02a-1039-4da8-95c8-4d8cbad2ba9d",
+      "bid": 14400,
+      "description": "",
+      "start_date": "2024-09-16T16:30:00",
+      "end_date": "2024-09-26T17:15:00",
+      "status_id": "44ddd0fe-4164-11df-9218-0019bb4983d8",
+      "type_id": "66d1daba-13c6-11e3-abf2-f23c91dfaa16",
+      "project_id": "4b7cee18-2608-4682-94a3-c904d960a403",
+      "sort": 1,
+      "context_type": "task",
+      "name": "Env",
+      "parent_id": "673c027c-0a1b-4b73-a5da-1f44f0d829a1",
+      "thumbnail_id": "c3d75be1-da5e-421a-8321-16bf25ce9956"
+    },
+    "old": {
+      "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+      "priority_id": "9661b320-3a0c-11e2-81c1-0800200c9a66",
+      "id": "62b6f02a-1039-4da8-95c8-4d8cbad2ba9d",
+      "bid": 14400,
+      "description": "",
+      "start_date": "2024-09-16T16:30:00",
+      "end_date": "2024-09-26T17:15:00",
+      "status_id": "44dded64-4164-11df-9218-0019bb4983d8",
+      "type_id": "66d1daba-13c6-11e3-abf2-f23c91dfaa16",
+      "project_id": "4b7cee18-2608-4682-94a3-c904d960a403",
+      "sort": 1,
+      "context_type": "task",
+      "name": "Env",
+      "parent_id": "673c027c-0a1b-4b73-a5da-1f44f0d829a1",
+      "thumbnail_id": "c3d75be1-da5e-421a-8321-16bf25ce9956"
+    }
+  }
+}
