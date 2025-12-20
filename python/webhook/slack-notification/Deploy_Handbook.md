@@ -17,7 +17,7 @@ Before deploying the code, we need a destination for our messages.
 1.  **Create a Slack App**:
 
     - Go to [Slack API: Your Apps](https://api.slack.com/apps).
-    - Click **Create New App** -> **From scratch**.
+    - Click **Create New App**.
     - Name it (e.g., "ftrack-notification") and select your workspace.
 
 2.  **Enable Incoming Webhooks**:
