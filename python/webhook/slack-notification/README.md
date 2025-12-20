@@ -2,6 +2,8 @@
 
 Connect your ftrack workflow with Slack! This service automatically pushes updates from ftrack directly to your team's Slack channels, keeping everyone in sync without leaving the chat.
 
+<!-- To embed the video: Open this file in GitHub Web Editor and drag 'ftrack-Slack-notification.mp4' here -->
+
 ![Integration Hero](./ftrack-Slack-notification-cover.jpg)
 
 ## Highlights ✨
