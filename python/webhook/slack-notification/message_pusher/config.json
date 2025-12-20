@@ -1,0 +1,20 @@
+{
+  "server_url": "<https://your-ftrack-server.ftrackapp.com>",
+  "api_user": "<your-api-username>",
+  "api_key": "<your-long-api-key>",
+  "ftrack_secret": "<your-chosen-secret-string>",
+  "project_map": {
+    "<ftrack-project1-id>": {
+      "project_name": "<your-project1-name>",
+      "webhook_url": "<https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK_1>"
+    },
+    "<ftrack-project2-id>": {
+      "project_name": "<your-project2-name>",
+      "webhook_url": "<https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK_2>"
+    },
+    "<ftrack-project3-id>": {
+      "project_name": "<your-project3-name>",
+      "webhook_url": "<https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK_3>"
+    }
+  }
+}
