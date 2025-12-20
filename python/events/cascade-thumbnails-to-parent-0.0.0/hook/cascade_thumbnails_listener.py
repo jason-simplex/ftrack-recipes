@@ -9,10 +9,47 @@ import functools
 
 logger = logging.getLogger("com.ftrack.recipes.cascade_thumbnails_to_parent")
 
+def send_message_to_user(session, user_id):
+    '''Send a success message to the active user.
+
+    Use the event hub of *session* to pop up a message for the user with
+    *user_id*. (Functionality new in ftrack 3.3.31.)
+    '''
+    # event 结构体 参考：
+    # https://developer.ftrack.com/websocket-events/event-list#ftrackactiontrigger-user-interface
+    session.event_hub.publish(
+        ftrack_api.event.base.Event(
+            topic='ftrack.update',
+            data=dict(
+                type='message',
+                success=True,
+                message=(
+                    '缩略图更新啦！'
+                ),
+            ),
+            target='applicationId=ftrack.client.web and user.id="{0}"'.format(user_id),
+        ),
+        on_error='ignore',
+    )
+
+def send_broadcast_message(session):
+    '''Send a broadcast message to all web clients.'''
+    session.event_hub.publish(
+        ftrack_api.event.base.Event(
+            topic='ftrack.update',
+            data=dict(
+                type='message',
+                success=True,
+                message='缩略图已自动更新！'
+            ),
+            target='applicationId=ftrack.client.web'
+        ),
+        on_error='ignore',
+    )
 
 def cascade_thumbnail(session, event):
     """Handle *event* and cascade thumbnail changes on versions."""
-
+    user_id = event['source'].get('user', {}).get('id', None)
     for entity in event["data"].get("entities", []):
         asset_version = None
         entity_id = None
@@ -55,9 +92,34 @@ def cascade_thumbnail(session, event):
 
             if task:
                 logger.info(f'updating task: {task["name"]}')
+                # 更新 task 的 thumbnail_id
+                old_thumbnail_id = task["thumbnail_id"]
                 task["thumbnail_id"] = asset_version["thumbnail_id"]
+                
+                try:
+                    session.commit()
+                    # 调试：打印user_id信息
+                    logger.info(f'User ID from event: {user_id}')
+                    
+                    if user_id:
+                        send_message_to_user(session, user_id)
+                        logger.info(f'Message sent to user: {user_id}')
+                    else:
+                        # 如果没有特定用户，发送广播消息
+                        send_broadcast_message(session)
+                        logger.info('Broadcast message sent to all web clients')
+                        
+                except Exception:
+                    logger.exception('Failed to update task thumbnail')
+                    # Since we failed to synchronize our changes with the server, revert
+                    # our state to match what was on the server when we started.
+                    session.rollback()
+                    raise
 
-    session.commit()
+
+    
+
+    
 
 
 def register(session, **kw):

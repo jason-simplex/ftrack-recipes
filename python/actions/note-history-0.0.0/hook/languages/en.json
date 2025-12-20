@@ -1,0 +1,43 @@
+{
+    "action": {
+        "label": "Query Note History",
+        "description": "Query note history for the selected entity"
+    },
+    "interface": {
+        "query_label": "Query note history for {entity_name} (excluding notes on child nodes)",
+        "limit_label": "Enter maximum number of records to query (default 10)",
+        "limit_placeholder": "Enter a number, default query 10 records"
+    },
+    "launch": {
+        "success_message": "Successfully retrieved {limit} note records",
+        "no_records": "No note history records found",
+        "title": "Note History",
+        "export_success": "Note history successfully exported to: {file_path}",
+        "export_error": "Export failed: {error}",
+        "export_button_label": "Export to Markdown File"
+    },
+    "export": {
+        "entity_label": "Entity",
+        "export_time_label": "Export Time",
+        "record_count_label": "Record Count",
+        "record_detail_title": "Record Details"
+    },
+    "operations": {
+        "create": "✏️Create",
+        "update": "💊Update",
+        "delete": "❌Delete"
+    },
+    "content_display": {
+        "create_content": "## -Created content: \n{content}",
+        "update_after": "## -After update: \n{content}",
+        "update_before": "## -Before update: \n{content_old}",
+        "delete_content": "## -Deleted content: \n{content}",
+        "unknown_event": "## Unknown event type: \n{event_type}",
+        "result_format": "{time} -- User {user} {operation} a note on {entity}:\n{content_info}"
+    },
+    "logging": {
+        "get_events_info": "_get_q_events() received valid limit count: {limit}",
+        "receive_limit_info": "Received valid limit count: {limit}",
+        "registered_info": "Registered actions and listening for event. Use Ctrl-C to abort."
+    }
+}

@@ -1,0 +1,18 @@
+- By default ftrack comes with a wizard which allows users to import project data from external source such as Microsoft Excel. While it only support non-image data. 
+- As a great supplement, this tool allows users to keep using the same CSV sheet file for importing tasks, while this action focuses on importing thumbnails. So they don't have to create a new CSV in specific for thumbnails.
+- Tasks are always nested in a project hierarchy, every nested task has its unique "Task Path" consists of layers of entity names from its root to itself, such as `project_name/sequence_name/shot_name/task_name` . This importer is able to analyze the columns in your .xlsx file then batch-import tasks' thumbnails based on your "Task Path" rule.
+- You might have multiple sheets in your .xlsx file. This importer allows users to choose what sheet they want to perform image-impor. 
+- To showcase how to use this tool from scratch, let's say you have an .xlsx file with thumbnails ready for import. 
+- 1. you start with creating a project with necessary data values using ftrack import wizard. 
+- 2. Once you finish your project creation, you can launch this tool on the Project layer, "Batch-task-thumbnails-import"
+- 3. it pops up a dialog box, and it prompts you to load an .xlsx file
+- 4. Once it finishes loading, it displays all available sheets and columns in your .xlsx file. 
+- 5. Depends on what sheets you have in your file, you can choose which one you want to import from
+- 6. You can config your "Task Path" rule manually by typing the column names  you want with slash separator
+- 7. Or you can use this "Visual Rule Builder" to pick from the "Available Columns"  list
+- 8. Your selected columns will appear as chips right here, you can drag to re-order  and double-click to remove. 
+- 9. Once you've confirm that rule is correct, you press this OK button, and go back to your ftrack's interface, 
+- 10. You'll notice that a new job has been created in your job queue. I'm testing with a bunch of small size image thumbnails, so the processing could be real quick. 
+- 11. Instantly, you can view that every task has been updated with a correct thumbnail
+- 12. This time, let's do it again for tasks in under my Assets Hierarchy, 
+- 13. Ok, now I've done all my imports for all my tasks in this project. 

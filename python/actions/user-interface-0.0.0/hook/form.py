@@ -16,6 +16,13 @@ class UserInterface(BaseAction):
     description = 'Example action returning a user interface.'
 
     def discover(self, session, entities, event):
+        if len(entities)!= 1:
+            return False
+        print(f"current selection: {event['data']['selection'][0]} \n")
+        entity_type, entity_id = entities[0]
+        print(f"upacked entities: {entity_type}, id: {entity_id} \n")
+
+
         '''Return True if the action can be discovered.
 
         Check if the current selection can discover this action.
@@ -25,6 +32,13 @@ class UserInterface(BaseAction):
         return True
 
     def interface(self, session, entities, event):
+        
+        item = {
+            'label': 'My String',
+            'type': 'text',
+            'value': 'no string',
+            'name': 'my_string',
+        }
         widgets = [
             {
                 'label': 'My String',
@@ -58,9 +72,9 @@ class UserInterface(BaseAction):
                 'type': 'textarea',
             },
             {
-                'label': 'My Boolean',
+                'label':'BOOL',
                 'name': 'my_boolean',
-                'value': True,
+                'value': item,
                 'type': 'boolean',
             },
             {'value': 'This field is hidden', 'name': 'my_hidden', 'type': 'hidden'},
@@ -78,6 +92,7 @@ class UserInterface(BaseAction):
         return widgets
 
     def launch(self, session, entities, event):
+        
         if 'values' in event['data']:
             values = event['data']['values']
             self.logger.info('Got values: {0}'.format(values))
@@ -89,7 +104,6 @@ def register(session, **kw):
     '''Register plugin.'''
     if not isinstance(session, ftrack_api.Session):
         return
-
     action = UserInterface(session)
     action.register()
 

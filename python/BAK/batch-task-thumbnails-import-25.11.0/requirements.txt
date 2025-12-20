@@ -1,0 +1,6 @@
+ftrack-python-api
+ftrack-action-handler
+Qt.py
+PySide6
+openpyxl
+xlwings

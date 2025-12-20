@@ -1,7 +1,7 @@
-# Create Report Action
+# Create Review Report Action
 
 Example action to show how to read data from the server and write them
-in an excel file. The file will be available to download from within the
+in a pdf file. The file will be available to download from within the
 web ui.
 
 ## Scope
@@ -11,7 +11,7 @@ web ui.
 -   Create a Job so that the user sees progress.
 -   Gather some data from the project (e.g. names and descriptions) and
     perhaps a filter.
--   Create an excel from the data and attach it to the job.
+-   Create an pdf from the data and attach it to the job.
 -   Set the job to completed.
 
 ## Install and setup

@@ -54,11 +54,11 @@ class CloneReview(BaseAction):
         entity_type, entity_id = entities[0]
         review_session = session.get(entity_type, entity_id)
         new_review_objects = []
-        objects = review_session["review_session_objects"]
+        objects = review_session['review_session_objects']
         for review_object in objects:
 
             latest_version = session.query(
-                f'AssetVersion where asset_id is {review_object["asset_version"]["asset_id"]} and is_latest_version is True'
+                f"AssetVersion where asset_id is {review_object['asset_version']['asset_id']} and is_latest_version is True"
             ).one()
 
             new_session_object = session.create(
@@ -66,9 +66,9 @@ class CloneReview(BaseAction):
                     "asset_version": latest_version,
                     "version": f"Version {latest_version['version']}",
                     "name": self.get_name(latest_version),
-                    "version_id": latest_version["id"],
-                    "description": review_object["description"],
-                    "statuses": review_object["statuses"]
+                    "version_id": latest_version['id'],
+                    "description": review_object['description'],
+                    "statuses": review_object['statuses']
                 }
             )
             new_review_objects.append(new_session_object)
@@ -78,11 +78,11 @@ class CloneReview(BaseAction):
             "ReviewSession",
             {
                 "name": f"Clone of {review_session['name']} @ {review_name}",
-                "project_id": review_session["project_id"],
-                "review_session_invitees": review_session["review_session_invitees"],
+                "project_id": review_session['project_id'],
+                "review_session_invitees": review_session['review_session_invitees'],
                 "review_session_objects": new_review_objects,
-                "settings": review_session["settings"],
-                "description": review_session["description"]
+                "settings": review_session['settings'],
+                "description": review_session['description']
             },
         )
 

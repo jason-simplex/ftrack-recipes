@@ -21,12 +21,14 @@ class EnableUsersAction(BaseAction):
     variant = "Enable Users"
     identifier = "ftrack.recipes.enable_users"
     description = "Any selected users will be enabled"
+    icon = "https://pipedream.com/s.v0/app_XywhNP/logo/orig"
 
     # We set activate to True because we want to enable users.
     # True will be the final state of user's is_active attribute.
     activate = True
 
     def _get_users(self, entities):
+        # 这里的 "" 是给需要分块的字符串加上引号并配合 + 把各部分的字符串连接起来
         return self.session.query(
             f"User where is_active = {not self.activate} and (id = '"
             + "' or id = '".join([user[1] for user in entities])
@@ -76,6 +78,7 @@ class EnableUsersAction(BaseAction):
         else:
             action = "Disabled"
 
+        # 区分单数和复数的所选用户人数
         if user_count != 1:
             return f"{action} {user_count} users."
         return f"{action} {user_count} user."

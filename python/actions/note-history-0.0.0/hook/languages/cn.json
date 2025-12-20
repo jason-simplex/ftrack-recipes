@@ -1,0 +1,43 @@
+{
+    "action": {
+        "label": "查询备注变更历史",
+        "description": "查询所选实体的备注变更历史"
+    },
+    "interface": {
+        "query_label": "查询关于 {entity_name} 的备注变更历史(不包含子节点上的备注)",
+        "limit_label": "输入倒查记录数量上限 (默认10条)",
+        "limit_placeholder": "输入一个数字, 默认倒查10条记录"
+    },
+    "launch": {
+        "success_message": "成功获取 {limit} 条备注变更记录",
+        "no_records": "暂无备注历史记录",
+        "title": "备注变更历史",
+        "export_success": "备注历史已成功导出到: {file_path}",
+        "export_error": "导出失败: {error}",
+        "export_button_label": "导出为Markdown文件"
+    },
+    "export": {
+        "entity_label": "实体",
+        "export_time_label": "导出时间",
+        "record_count_label": "记录数量",
+        "record_detail_title": "记录详情"
+    },
+    "operations": {
+        "create": "✏️创建",
+        "update": "💊更新",
+        "delete": "❌删除"
+    },
+    "content_display": {
+        "create_content": "## -创建内容: \n{content}",
+        "update_after": "## -更新后: \n{content}",
+        "update_before": "## -更新前: \n{content_old}",
+        "delete_content": "## -删除内容: \n{content}",
+        "unknown_event": "## 未知事件类型: \n{event_type}",
+        "result_format": "{time} -- 用户 {user} 在 {entity} 上 {operation} 了一条备注:\n{content_info}"
+    },
+    "logging": {
+        "get_events_info": "_get_q_events() 接收有效限制数量: {limit}",
+        "receive_limit_info": "接收有效限制数量: {limit}",
+        "registered_info": "Registered actions and listening for event. Use Ctrl-C to abort."
+    }
+}

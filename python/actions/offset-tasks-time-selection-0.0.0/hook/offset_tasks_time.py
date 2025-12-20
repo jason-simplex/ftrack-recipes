@@ -13,6 +13,7 @@ class OffsetTasksTimeSelection(BaseAction):
     label = 'offset tasks time selection'
     identifier = 'ftrack.recipes.offset-tasks-time-selection'
     description = 'offset tasks time selection'
+    icon = 'https://pipedream.com/s.v0/app_JQh7BN/logo/orig'
 
     def launch(self, session, entities, event):
 

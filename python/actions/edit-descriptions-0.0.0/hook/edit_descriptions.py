@@ -16,21 +16,7 @@ class EditDescriptions(BaseAction):
     description = 'Edit descriptions for AssetVersions'
 
     def discover(self, session, entities, event):
-        '''Return True to be discovered when *entities* is a valid selection.
 
-        *entities* must contain either one or more AssetVersions or a non-empty
-        List of AssetVersions.
-
-        *session* is a ftrack_api.Session instance.
-
-        *entities* is a list of tuples each containing the entity type and the
-        entity id. If the entity is a hierarchical you will always get the
-        entity type TypedContext, once retrieved through a get operation you
-        will have the "real" entity type ie. example Shot, Sequence
-        or Asset Build.
-
-        *event* is the unmodified original event.
-        '''
         if not entities:
             return False
 
@@ -53,7 +39,9 @@ class EditDescriptions(BaseAction):
         return True
 
     def _get_versions(self, entities):
-        '''Resolve the *entities* list into AssetVersion objects.'''
+        
+        # entities数量为1且类型为List时，返回List中的AssetVersion对象
+        # 否则，遍历entities，当类型为AssetVersion时，返回AssetVersion对象
         if len(entities) == 1 and entities[0][0] == 'List':
             return self.session.get(*entities[0])['items']
         return (
@@ -61,27 +49,34 @@ class EditDescriptions(BaseAction):
             for entity in entities
             if entity[0] == 'AssetVersion'
         )
+    
 
     def interface(self, session, entities, event):
-        '''Return an interface if applicable else None.
 
-        *session* is a `ftrack_api.Session` instance
-
-        *entities* is a list of tuples each containing the entity type and the
-        entity id. If the entity is a hierarchical you will always get the
-        entity type TypedContext, once retrieved through a get operation you
-        will have the "real" entity type ie. example Shot, Sequence
-        or Asset Build.
-
-        *event* the unmodified original event
-        '''
         values = event['data'].get('values', {})
+        # 如果values 被填入数值了，说明已经点击了保存按钮，直接关闭窗口
+        # 否则，说明是第一次打开窗口，需要展示窗口
         if values:
-            return
+            return 
 
+        # 这里的的 versions 是个集合  <ftrack_api.collection.Collection object at 0x10ab00790>
         versions = self._get_versions(entities)
+
+        '''
+        version['link'] 是个列表,每个元素是字典, 包含了该AssetVersion的上下级关系
+        例如：
+        [
+        {'id': '33d65c60-a077-11ed-ae11-52eecb693950', 'name': 'tatata', 'type': 'Project'}, 
+        {'id': '3f14c760-a077-11ed-ae11-52eecb693950', 'name': 'sh01', 'type': 'TypedContext'}, 
+        {'id': '57b740de-a9a5-4e06-b659-aa9eaee59a87', 'name': 'cloud v001', 'type': 'AssetVersion'}
+        ]
+        '''
+        # [] 里是个列表推导式
         widgets = [
             {
+                # separator.join(iterable) 将iterable中的元素用separator连接起来
+                # link['name'] for link in version['link'] 是一个生成器表达式，
+                # 用于从 version['link'] 列表中的每个字典提取 name 值
                 'label': ' / '.join(link['name'] for link in version['link']),
                 'type': 'text',
                 'value': version['comment'],
@@ -89,29 +84,11 @@ class EditDescriptions(BaseAction):
             }
             for version in versions
         ]
-
         return widgets
 
     def launch(self, session, entities, event):
-        '''Callback method for the custom action.
+        print(event['data']['values'])
 
-        Return either a bool (True if successful or False if the action failed)
-        or a dictionary with they keys `message` and `success`, the message
-        should be a string and will be displayed as feedback to the user,
-        success should be a bool, True if successful or False if the action
-        failed.
-
-        *session* is a ftrack_api.Session instance.
-
-        *entities* is a list of tuples each containing the entity type and the
-        entity id. If the entity is a hierarchical you will always get the
-        entity type TypedContext, once retrieved through a get operation you
-        will have the "real" entity type ie. example Shot, Sequence
-        or Asset Build.
-
-        *event* is the unmodified original event.
-
-        '''
         for id_, comment in list(event['data']['values'].items()):
             session.get('AssetVersion', id_)['comment'] = comment
         session.commit()
@@ -120,12 +97,7 @@ class EditDescriptions(BaseAction):
 
 
 def register(session, **kw):
-    '''Register hook with provided *api_object*.
 
-    Validate that session is an instance of ftrack_api.Session. If not, assume
-    that register() is being called from an old or incompatible API and return
-    without doing anything.
-    '''
     if not isinstance(session, ftrack_api.Session):
         return
 

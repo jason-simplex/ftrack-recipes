@@ -15,7 +15,7 @@ class OffsetMilestonesTimeSelection(BaseAction):
     description = 'offset milestones time selection'
 
     def launch(self, session, entities, event):
-        
+        # ['offset'] 是字典 event['data']['values'] 的 key，这行代码获取用户输入的偏移量
         offset_days = event['data']['values']['offset']
         
         if not offset_days:
@@ -29,8 +29,10 @@ class OffsetMilestonesTimeSelection(BaseAction):
         
             if not end_date:
                 continue
-
-            milestone['end_date'] = milestone['end_date'].shift(days=int(offset_days))   
+            
+            # 不知道shift() 是 arrow 的方法
+            milestone['end_date'] = milestone['end_date'].shift(days=int(offset_days))
+            print(f"Milestone ends: {milestone['end_date']}")   
 
         try:
             session.commit()
@@ -56,6 +58,7 @@ class OffsetMilestonesTimeSelection(BaseAction):
         return False
 
     def interface(self, session, entities, event):
+        print(f"interfaceValues: {event['data'].get('values',{})}")
         # If "value" is present, the ui has been raised and the value been set.
         # hence no need to re raise the ui.
 

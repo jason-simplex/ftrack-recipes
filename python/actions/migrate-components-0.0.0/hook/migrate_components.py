@@ -14,6 +14,7 @@ class MigrateComponents(BaseAction):
     label = 'Migrate Components'
     identifier = 'com.ftrack.recipes.migrate_components'
     description = 'Migrate project components from one location to another'
+    icon = 'https://pipedream.com/s.v0/app_XaLhew/logo/orig'
 
     def validate_selection(self, entities):
         '''Utility method to check *entities* validity.
@@ -118,6 +119,8 @@ class MigrateComponents(BaseAction):
                 # Remove source location as well as ftrack default ones.
                 continue
 
+            # widgets[-1] 是界面上那个枚举器的对象，
+            # widgets[-1]['data'] 是下拉列表的数据列表，里面的元素是字典
             widgets[-1]['data'].append(
                 {'label': location['name'], 'value': location['name']}
             )
@@ -182,16 +185,16 @@ class MigrateComponents(BaseAction):
         self.session.commit()
 
 
-def register(api_object, **kw):
-    '''Register hook with provided *api_object*.'''
+def register(session, **kw):
+    '''Register hook with provided *session*.'''
 
     # Validate that session is an instance of ftrack_api.Session. If not,
     # assume that register is being called from an old or incompatible API and
     # return without doing anything.
-    if not isinstance(api_object, ftrack_api.session.Session):
+    if not isinstance(session, ftrack_api.session.Session):
         return
 
-    action = MigrateComponents(api_object)
+    action = MigrateComponents(session)
     action.register()
 
 

@@ -37,11 +37,17 @@ class MarkRunningJobsFailedAction(BaseAction):
         This will load any running job outside the grace period and will
         mark them as failed in order to clean up the queue.
         """
+        # cutoff 变量将包含一个格式化的日期时间字符串，用于后续的数据库查询。
+        # format() 方法用于将 arrow 对象格式化为指定格式的字符串，便于显示和存储。
+        # 使用括号 () 分组可以使代码更具可读性，特别是在多行书写时。括号 () 明确地表示这些方法调用是一个整体，按顺序依次执行。
         cutoff = (
             arrow.utcnow()
             .shift(minutes=AGE_IN_MINUTES * -1)
             .format("YYYY-MM-DD HH:mm:ss")
         )
+
+        # 尽管 created_at 是一个 arrow 对象，而 cutoff 是一个字符串
+        # 但是，在 SQL 语句中，它们都被用作字符串常量，因此不需要进行类型转换。
         jobs = self.session.query(
             f'select status from Job where status is running and created_at < "{cutoff}"'
         ).all()

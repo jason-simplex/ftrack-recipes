@@ -10,6 +10,7 @@ class MyWebWidgetAction(BaseAction):
     identifier = 'my.webwidget.action'
     label = 'My Web Widget Action'
     description = 'This is an example action'
+    icon = 'https://pipedream.com/s.v0/app_1w0hvd/logo/orig'
 
     def discover(self, session, entities, event):
         """
@@ -25,12 +26,16 @@ class MyWebWidgetAction(BaseAction):
 
         This will simply just return a web widget with the specified URL.
         """
+        print(event['topic'])
         return {
+          
             'success': True,
             'message': 'success', # Required
             'type': 'widget',
-            'url': 'https://www.example.com',
-            'title': 'My Web Widget Action'
+            'url': 'https://chinateam.ftrackapp.cn/#entityId=33d65c60-a077-11ed-ae11-52eecb693950&entityType=show&itemId=projects&view=tasks',
+            'title': 'My Web Widget Action',
+            'width': 1280,
+            'height': 720
         }
 
 
