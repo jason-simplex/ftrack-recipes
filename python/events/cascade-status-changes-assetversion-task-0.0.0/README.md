@@ -1,6 +1,10 @@
-# 🔄 Cascade Status: AssetVersion to Task
+# 🔄 Cascade Status Update: AssetVersion to Task
 
 This event listener automatically syncs status changes from an **AssetVersion** to its associated **Task**. When you update a version's status (e.g., "Approved"), the linked task's status will update to match.
+
+
+https://github.com/user-attachments/assets/352dc3a8-9458-46e7-9c9d-80f1e395c16a
+
 
 ## ✨ Highlights
 
