@@ -28,6 +28,9 @@ Batch-import thumbnails for ftrack tasks — simple, visual, and fast.
 
 ## Notes 📝
 
+- If your sheet name is "Shots", the Task Path will be auto-generated as "Shots/Sequence/Shot/Task" by default.
+- If your sheet name is "Assets", the Task Path will be auto-generated as "Assets/AssetCategory/Folder/AssetBuild/Task" by default.
+- For sheet name other than "Shots" or "Assets", you need to manually configure the "Task Path" rule in "Task Path Builder" to match your project hierarchy.
 - Prefer `.xlsx`; CSV does not contain embedded images and cannot be used for image extraction.
 - Very large files/many images may run slower; consider splitting the import or lowering image resolution.
 - Ensure you have edit permissions on target tasks; only thumbnails are updated.
