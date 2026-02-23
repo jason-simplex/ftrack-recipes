@@ -15,10 +15,13 @@ This guide will walk you through the steps to deploy the ftrack-to-Slack notific
 Before deploying the code, we need a destination for our messages.
 
 1.  **Create a Slack App**:
+    - Go to [https://api.slack.com/apps](https://api.slack.com/apps).
+    - Click **Create New App - From a manifest - Pick a workspace - Name it in the manifest (e.g., "ftrack-notification")**.
+<img width="2880" height="1480" alt="image" src="https://github.com/user-attachments/assets/bb8dc6c7-3c98-434b-b71f-309c7e153744" />
+<img width="2880" height="1480" alt="image" src="https://github.com/user-attachments/assets/632543b8-6279-46dd-8cc1-cc774de7add9" />
+    - Click this new app in the list to go to its settings, in **Settings - Basic Information - Display Information** section, you can rename your app and update its icon. To get the ftrack [icon image](https://github.com/jason-simplex/ftrack-recipes/blob/jason/workbench/python/webhook/slack-notification/integratoin-hero-ftrack.png).
+<img width="2708" height="2022" alt="image" src="https://github.com/user-attachments/assets/c93ec704-7b50-4908-b040-f47485703bc7" />
 
-    - Go to [Slack API: Your Apps](https://api.slack.com/apps).
-    - Click **Create New App**.
-    - Name it (e.g., "ftrack-notification") and select your workspace.
 
 2.  **Enable Incoming Webhooks**:
 
