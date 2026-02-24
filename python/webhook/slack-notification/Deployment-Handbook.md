@@ -17,10 +17,11 @@ Before deploying the code, we need a destination for our messages.
 1.  **Create a Slack App**:
     - Go to [https://api.slack.com/apps](https://api.slack.com/apps).
     - Click **Create New App - From a manifest - Pick a workspace - Name it in the manifest (e.g., "ftrack-notification")**.
-    - Click this new app in the list to go to its settings, in **Settings - Basic Information - Display Information** section, You can rename your app and update its icon. You can use this as your App's [icon](https://github.com/jason-simplex/ftrack-recipes/blob/jason/workbench/python/webhook/slack-notification/integratoin-hero-ftrack.png).
+    - Click this new app in the list to go to its settings, in **Settings - Basic Information - Display Information** section, You can rename your app and update its icon. You can use this [icon](https://github.com/jason-simplex/ftrack-recipes/blob/jason/workbench/python/webhook/slack-notification/integratoin-hero-ftrack.png) for your App.
 <img width="2880" height="1480" alt="image" src="https://github.com/user-attachments/assets/bb8dc6c7-3c98-434b-b71f-309c7e153744" />
 <img width="1134" height="1132" alt="image" src="https://github.com/user-attachments/assets/b905ca8c-2ece-4e8e-9a9d-a13b453a74e3" />
-<img width="2708" height="2022" alt="image" src="https://github.com/user-attachments/assets/c93ec704-7b50-4908-b040-f47485703bc7" />
+<img width="3336" height="1996" alt="image" src="https://github.com/user-attachments/assets/a53caa3e-7c16-4331-a2ab-5595df40d7bb" />
+
 
 
 2.  **Enable Incoming Webhooks**:
@@ -163,3 +164,6 @@ Finally, tell ftrack to send events to your deployed service.
     - Messaging to Slack when a Note's content is updated in ftrack.
 2.  Check your Slack channel.
 3.  You should see nicely formatted notifications!
+
+<img width="1051" height="1417" alt="image" src="https://github.com/user-attachments/assets/06681ae4-767b-4f83-bcf2-b6c7f6d4ef4b" />
+
